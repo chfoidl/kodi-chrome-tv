@@ -49,13 +49,8 @@ class ChromePilot:
                 pilotArgs.append("--ext-path")
                 pilotArgs.append(extension)
 
-        self._killPilotInstances()
-
         xbmc.log("Chrome-Pilot: Starting with args: " + ",".join(pilotArgs), level=xbmc.LOGNOTICE)
         _runDaemon(pilotPath + " " + " ".join(pilotArgs))
-
-    def _killPilotInstances(self):
-        subprocess.Popen(["sh", "-c", "pgrep -f kodi-chrome-pilot | xargs kill"], stderr=subprocess.PIPE)
 
     def _findChrome(self):
         chromePath = self.chromePath
