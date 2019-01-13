@@ -46,7 +46,8 @@ class ChromePilot:
 
         for extension in extensions:
             if os.path.isdir(extension):
-                pilotArgs.append("--ext-path", extension)
+                pilotArgs.append("--ext-path")
+                pilotArgs.append(extension)
 
         self._killPilotInstances()
 
