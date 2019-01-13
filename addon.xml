@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.chrome-tv"
-       name="Chrome TV"
-       version="0.1.0"
-       provider-name="chrisxf">
+<addon id="script.module.chrome-pilot" name="Chrome Pilot" version="0.1.0" provider-name="chrisxf">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="browser.chrome" version="9.0"/>
   </requires>
+  <extension point="xbmc.python.module" library="lib" />
   <extension point="xbmc.addon.metadata">
-    <summary>Chrome TV provides files for my other addons such as Netflix-TV and YouTube-TV</summary>
-    <description>Chrome TV</description>
+    <summary>Chrome Pilot provides files for other addons</summary>
+    <description>Chrome Pilot</description>
     <disclaimer></disclaimer>
     <platform>all</platform>
     <news></news>
