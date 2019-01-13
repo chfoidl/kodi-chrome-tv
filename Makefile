@@ -2,6 +2,7 @@ ADDON_ID := $(shell python -c "import xml.etree.ElementTree; print(xml.etree.Ele
 ADDON_VERSION := $(shell python -c "import xml.etree.ElementTree; print(xml.etree.ElementTree.parse('addon.xml').getroot().attrib['version']);")
 
 package: build-binaries
+	mkdir dist; \
 	zip $(ADDON_ID)-$(ADDON_VERSION).zip *
 
 build-binaries:
