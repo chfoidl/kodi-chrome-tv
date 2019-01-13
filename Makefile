@@ -3,7 +3,7 @@ ADDON_VERSION := $(shell python -c "import xml.etree.ElementTree; print(xml.etre
 
 package: build-binaries
 	mkdir dist; \
-	zip $(ADDON_ID)-$(ADDON_VERSION).zip *
+	zip dist/$(ADDON_ID)-$(ADDON_VERSION).zip *
 
 build-binaries:
 	mkdir tmp && \
