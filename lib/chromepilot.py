@@ -52,8 +52,7 @@ class ChromePilot:
         self._killPilotInstances()
 
         xbmc.log("Chrome-Pilot: Starting with args: " + ",".join(pilotArgs), level=xbmc.LOGNOTICE)
-
-        p = subprocess.Popen(["sh", "-c", pilotPath + " " + " ".join(pilotArgs)], shell=True)
+        _runDaemon(pilotPath + " " + " ".join(pilotArgs))
 
     def _killPilotInstances(self):
         subprocess.Popen(["sh", "-c", "pgrep -f kodi-chrome-pilot | xargs kill"], stderr=subprocess.PIPE)
@@ -87,3 +86,15 @@ def _runCmd(*args):
         return stdout
     else:
         return False
+
+def _runDaemon(cmd):
+    tmp = xbmc.translatePath('special://temp')
+    service = "chrome-pilot.service"
+    servicePath = os.path.join(tmp, "chrome-pilot.service")
+
+    sf = open(servicePath, "w")
+    sf.write("[Unit]\nDescription=Chrome-Pilot\n\n[Service]\nType=simple\nExecStart=" + cmd + "\n\n")
+    sf.close()
+
+    cmd = "systemctl link " + servicePath + " && systemctl start " + service + " && systemctl disable " + service
+    _runCmd("sh", "-c", cmd)
